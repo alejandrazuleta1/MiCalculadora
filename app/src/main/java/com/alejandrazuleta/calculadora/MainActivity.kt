@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.math.pow
 
@@ -157,9 +158,11 @@ class MainActivity : AppCompatActivity() {
                     Operators.PLUS -> value0 + value1
                     Operators.MINUS -> value0 - value1
                     Operators.DIVISION -> {
-                        if (value1 == 0.0)
-                            throw ArithmeticException("Divide By Zero")
-                        value0 / value1
+                        if (value1 == 0.0) {
+                            Toast.makeText(this, "Math Error", Toast.LENGTH_SHORT).show()
+                            value1
+                        }
+                        else value0 / value1
                     }
                     Operators.MULTIPLY -> value0 * value1
                 }
